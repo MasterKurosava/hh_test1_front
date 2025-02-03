@@ -9,7 +9,19 @@ export const apiClient = axios.create({
   },
 });
 
-// Устанавливаем токен при авторизации
+// Автоустановка токенаА
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `${token}`;
+  }
+
+  return config;
+});
+
+
+// Устанавливаем или удаляем токен
 export const setAuthToken = (token: string | null) => {
   if (token) {
     apiClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;

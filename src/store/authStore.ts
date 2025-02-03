@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true, error: null });
     try {
       const data = await loginApi(email, password);
-      set({ token: data.access_token, loading: false });
+      set({ token: data.token, loading: false });
       return true;
     } catch (error: any) {
       const errorMessage = error.response?.data?.detail || "Ошибка входа";

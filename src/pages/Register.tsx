@@ -9,7 +9,6 @@ import { registerApi } from "../api/authApi";
 const Register = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -41,10 +40,8 @@ const Register = () => {
 
     setLoading(true);
 
-    const [firstName, lastName = ""] = form.fullName.split(" ");
-
     try {
-      await registerApi(firstName, lastName, form.email, form.password);
+      await registerApi(form.email, form.password);
       navigate("/login");
     } catch (error: any) {
       console.log(error);
@@ -77,24 +74,6 @@ const Register = () => {
             </p>
 
             <form onSubmit={handleSubmit} className="mt-12 space-y-6">
-              <div>
-                <label htmlFor="fullName" className="text-sm font-normal text-gray-700 dark:text-gray-200">
-                  Имя и Фамилия
-                </label>
-                <div className="mt-2">
-                  <Input
-                    type="text"
-                    name="fullName"
-                    id="fullName"
-                    placeholder="Введите имя и фамилию"
-                    value={form.fullName}
-                    onChange={handleChange}
-                    className="block w-full px-6 py-4 text-base font-normal text-gray-900 dark:text-white placeholder-gray-700 dark:placeholder-gray-400 bg-transparent border border-gray-700 rounded-xl focus:outline-none"
-                    required
-                  />
-                </div>
-              </div>
-
               <div>
                 <label htmlFor="email" className="text-sm font-normal text-gray-900 dark:text-white">
                   Почта

@@ -8,7 +8,7 @@ import { getUserProfile } from "../api/userApi";
 const Profile = () => {
   const { logout } = useAuthStore();
   const navigate = useNavigate();
-  const [user, setUser] = useState<{ email: string; first_name: string; last_name: string } | null>(null);
+  const [user, setUser] = useState<{ email: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -67,15 +67,6 @@ const Profile = () => {
                 <p className="text-2xl font-bold text-foreground text-gray-200 dark:text-gray-600">Профиль</p>
 
                 <ul className="mt-6 space-y-5">
-                  <li className="flex items-center justify-between">
-                    <p className="text-xs font-bold tracking-wide text-gray-200 dark:text-gray-600 uppercase">
-                      Имя:
-                    </p>
-                    <p className="text-base font-bold text-foreground text-gray-400">
-                      {user?.first_name} {user?.last_name}
-                    </p>
-                  </li>
-
                   <li className="flex items-center justify-between">
                     <p className="text-xs font-bold tracking-wide text-gray-200 dark:text-gray-600 uppercase">
                       Email:
