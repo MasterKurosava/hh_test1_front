@@ -47,6 +47,8 @@ const Register = () => {
       await registerApi(firstName, lastName, form.email, form.password);
       navigate("/login");
     } catch (error: any) {
+      console.log(error);
+      
       setError(error.response?.data?.detail || "Ошибка регистрации");
     } finally {
       setLoading(false);
